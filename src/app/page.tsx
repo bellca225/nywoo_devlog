@@ -149,8 +149,7 @@ export default function Home() {
               initial="hidden"
               animate="show"
               custom={i + 8}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="group p-6 rounded-2xl border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/30 transition-colors cursor-pointer"
             >
               <Link href={`/blog/${post.slug}`}>
