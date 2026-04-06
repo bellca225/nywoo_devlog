@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { QueryProvider } from "@/components/common/QueryProvider";
+import { AuthProvider } from "@/components/common/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +34,15 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white dark:bg-black text-black dark:text-white">
         <ThemeProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <footer className="border-t border-black/10 dark:border-white/10 py-8 text-center text-sm text-zinc-400">
-            © 2026 nywoo.dev — built with Next.js & Claude
-          </footer>
+          <QueryProvider>
+            <AuthProvider>
+              <Header />
+              <main className="flex-1">{children}</main>
+              <footer className="border-t border-black/10 dark:border-white/10 py-8 text-center text-sm text-zinc-400">
+                © 2026 nywoo.dev — built with Next.js & Claude
+              </footer>
+            </AuthProvider>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
