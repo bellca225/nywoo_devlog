@@ -20,7 +20,7 @@ const CAREERS: CareerItem[] = [
     period: "2024.10 – 현재",
     company: "다비치안경체인",
     role: "프론트엔드 개발",
-    stacks: ["Nuxt", "Vue3", "TypeScript", "Java Spring", "Thymeleaf", "React", "Next.js", "TypeScript"],
+    stacks: ["Nuxt", "Vue3", "TypeScript", "Java Spring", "Thymeleaf", "React", "Next.js"],
     current: true,
   },
   {
