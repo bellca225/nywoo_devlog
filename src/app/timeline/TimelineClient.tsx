@@ -20,14 +20,14 @@ const CAREERS: CareerItem[] = [
     period: "2024.10 – 현재",
     company: "다비치안경체인",
     role: "프론트엔드 개발",
-    stacks: ["Nuxt", "Vue3", "TypeScript", "Java Spring", "Thymeleaf"],
+    stacks: ["Nuxt", "Vue3", "TypeScript", "Java Spring", "Thymeleaf", "React", "Next.js", "TypeScript"],
     current: true,
   },
   {
     period: "2022.12 – 2024.09",
     company: "위스마트",
     role: "프론트엔드 개발",
-    stacks: ["Vue3", "Vite", "Vuetify", "TypeScript"],
+    stacks: ["Vue3", "Vite", "Vuetify", "TypeScript", "Java Spring"],
   },
   {
     period: "2021.02 – 2022.06",
@@ -49,7 +49,7 @@ const CAREERS: CareerItem[] = [
   },
 ];
 
-const LEARNING = ["React", "Next.js", "TypeScript", "Three.js"];
+const LEARNING = ["Three.js"];
 
 const stackColor: Record<string, string> = {
   "Vue3": "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
