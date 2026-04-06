@@ -9,7 +9,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "/blog", label: "Blog" },
-  { href: "/#timeline", label: "Timeline" },
+  { href: "/timeline", label: "Timeline" },
   { href: "/#dashboard", label: "Dashboard" },
 ];
 
