@@ -3,7 +3,7 @@
 -- seed_posts.sql 실행 후 이 파일 실행
 -- =============================================
 
-DO $$
+DO $SEED$
 DECLARE
   author UUID;
   tag_supabase UUID;
@@ -622,4 +622,4 @@ INSERT INTO post_tags (post_id, tag_id) VALUES (post_id, tag_nextjs);
 
 RAISE NOTICE '삽질기 + 배포 포스트 3개 삽입 완료. author: %', author;
 
-END $$;
+END $SEED$;
