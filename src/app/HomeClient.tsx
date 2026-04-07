@@ -46,12 +46,9 @@ export default function HomeClient({ stats, recentPosts }: Props) {
       <section className="max-w-5xl mx-auto px-6 pt-24 pb-20">
         <motion.div
           variants={fadeUp} initial="hidden" animate="show" custom={0}
-          className="flex items-center gap-2 mb-6"
+          className="inline-block mb-6 px-3 py-1 text-xs font-medium rounded-full border border-black/20 dark:border-white/20 text-zinc-500"
         >
-          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-black dark:bg-white text-white dark:text-black">
-            재직 중
-          </span>
-          <span className="text-xs text-zinc-500 font-medium">다비치안경체인 · React / Next.js / TypeScript</span>
+          프론트엔드 개발자 성장 기록
         </motion.div>
 
         <motion.h1
@@ -67,7 +64,7 @@ export default function HomeClient({ stats, recentPosts }: Props) {
           variants={fadeUp} initial="hidden" animate="show" custom={2}
           className="text-lg text-zinc-500 max-w-xl mb-10"
         >
-          비동기, 인증, 상태관리, 인프라까지 — 다비치안경체인에서 일하며
+          비동기, 인증, 상태관리, 인프라까지 — 5년차 프론트엔드 개발자가
           부족한 기초를 채우는 과정을 공개합니다.
         </motion.p>
 
