@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useDeferredValue } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Eye } from "lucide-react";
@@ -19,29 +19,38 @@ interface Post {
 export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+  const deferredSearch = useDeferredValue(search);
 
-  const allTags = Array.from(
-    new Set(
-      initialPosts.flatMap((p) =>
-        p.post_tags.flatMap((pt) =>
-          Array.isArray(pt.tags) ? pt.tags.map((t) => t.name) : []
+  const allTags = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          initialPosts.flatMap((p) =>
+            p.post_tags.flatMap((pt) =>
+              Array.isArray(pt.tags) ? pt.tags.map((t) => t.name) : []
+            )
+          )
         )
-      )
-    )
-  ) as string[];
+      ) as string[],
+    [initialPosts]
+  );
 
-  const filtered = initialPosts.filter((post) => {
-    const matchTag = selectedTag
-      ? post.post_tags.some((pt) =>
-          Array.isArray(pt.tags) && pt.tags.some((t) => t.name === selectedTag)
-        )
-      : true;
-    const matchSearch = search
-      ? post.title.toLowerCase().includes(search.toLowerCase()) ||
-        post.summary?.toLowerCase().includes(search.toLowerCase())
-      : true;
-    return matchTag && matchSearch;
-  });
+  const filtered = useMemo(
+    () =>
+      initialPosts.filter((post) => {
+        const matchTag = selectedTag
+          ? post.post_tags.some((pt) =>
+              Array.isArray(pt.tags) && pt.tags.some((t) => t.name === selectedTag)
+            )
+          : true;
+        const matchSearch = deferredSearch
+          ? post.title.toLowerCase().includes(deferredSearch.toLowerCase()) ||
+            post.summary?.toLowerCase().includes(deferredSearch.toLowerCase())
+          : true;
+        return matchTag && matchSearch;
+      }),
+    [initialPosts, selectedTag, deferredSearch]
+  );
 
   return (
     <div className="max-w-5xl mx-auto px-6 pt-28 pb-20">
@@ -106,12 +115,14 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
         <p className="text-zinc-400 text-sm">포스트가 없어요.</p>
       ) : (
         <div className="flex flex-col divide-y divide-black/10 dark:divide-white/10">
-          {filtered.map((post, i) => (
+          {filtered.map((post) => (
             <motion.article
               key={post.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 + 0.2 }}
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               className="group py-6"
             >
               <Link href={`/blog/${post.slug}`} className="flex items-start justify-between gap-4">
